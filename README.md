@@ -12,9 +12,12 @@ Microcontrolador STM32H747XIH6 tem internamente uma memória Flash QSPI externa 
 
 ## Especificações do circuito integrado de memória Flash QSPI
 ### Hardware low-level
-Tecnologia               | Flash NOR Serial (Quad-SPI / QSPI)
-Capacidade em Megabytes  | 16 MB
-Capacidade em bytes      | 16.777.216 bytes
+| Função | Especificação |
+| --- | --- |
+| **Tecnologia da flash**      | Flash NOR Serial (Quad-SPI / QSPI) |
+| **Capacidade em Megabytes**  | 16 MB                              |
+| **Capacidade em bytes**      | 16.777.216 bytes                   |
+| **Faixa Térmica do Sistema** | -20 °C a +50 °C                    |
 - Barramento no STM32H747XIH6:
 	- QSPI.CLK: Pino PB2 (R6)
 	- QSPI.CS: Pino PG6 (F15)
@@ -22,15 +25,19 @@ Capacidade em bytes      | 16.777.216 bytes
 	- QSPI.D1 (IO1): Pino PD12 (T15)
 	- QSPI.D2 (IO2 / WP#): Pino PE2 (C7)
 	- QSPI.D3 (IO3 / HOLD#): Pino PD13 (R17)
-Faixa Térmica do Sistema | -20 °C a +50 °C
+
 ### Armazenamento
-Page program   | Unidade mínima de escrita    | 256 bytes
-Sector Erase   | Unidade mínima de apagamento | 4096 bytes
-Block Erase    | Tamanho dos blocos           | 32KB e 64KB
-Setores totais | 4096 setores de 4KB cada     | NC
-Endurace       | Ciclo de vida de setor       | 100.000 escritas/apagamentos
-Data Life      | Retenção de dados            | 20 anos a 85 graus CELCIUS
+| Função | Descrição | Capacidade |
+| --- | --- | --- |
+| **`Page program`**   | Unidade mínima de escrita    | 256 bytes                    |
+| **`Sector Erase`**   | Unidade mínima de apagamento | 4096 bytes                   |
+| **`Block Erase`**    | Tamanho dos blocos           | 32KB e 64KB                  |
+| **`Setores totais`** | 4096 setores de 4KB cada     | NC                           |
+| **`Endurace`**       | Ciclo de vida de setor       | 100.000 escritas/apagamentos |
+| **`Data Life`**      | Retenção de dados            | 20 anos a 85 graus CELCIUS   |
 ### Sistemas de segurança
+| Tecnologia | Descrição |
+| --- | --- |
 Read Only Trigger    | Em queda brusca de energia, trava a FLASH em modo ROM
 Protection Registers | Pinos físicos de protenção contra escrita
 
@@ -112,10 +119,10 @@ Armazena os metadados cadastrais dos medidores de energia conectados ao barramen
 | **`numero_de_serie`** | `TEXT` | — | Número de série físico lido do equipamento Finder 7M.38. |
 | **`localizacao`** | `TEXT` | — | Local físico ou painel onde o medidor está instalado. |
 
----
-
 ### Tabela `dados_armazenados`
 Tabela de série temporal que armazena o retrato elétrico completo de cada ciclo de leitura.
+
+---
 
 | Grupo | Coluna | Tipo | Unidade / Formato | Descrição |
 | :--- | :--- | :--- | :--- | :--- |
