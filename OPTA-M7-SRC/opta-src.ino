@@ -6,36 +6,36 @@ namespace scheduler{
   
     class LogicalTimedThread{
     private:
-    unsigned long last_time;
-    unsigned long interval;
+        unsigned long last_time;
+        unsigned long interval;
 
     public:
-    LogicalTimedThread(unsigned long interval){
-        this->last_time = millis();
-        this->interval = interval;
-    }
-
-    unsigned long get_current_time(){
-        return millis();
-    }
-
-    unsigned long get_last_time(){
-        return last_time;
-    }
-
-    bool ready(){
-        unsigned long now = millis();
-
-        if(now - last_time >= interval){
-            last_time = now;
-            return true;
+        LogicalTimedThread(unsigned long interval){
+            this->last_time = millis();
+            this->interval = interval;
         }
-        return false;
-    }
-    };
-    }
 
-    namespace chronos{
+        unsigned long get_current_time(){
+            return millis();
+        }
+
+        unsigned long get_last_time(){
+            return last_time;
+        }
+
+        bool ready(){
+            unsigned long now = millis();
+
+            if(now - last_time >= interval){
+                last_time = now;
+                return true;
+            }
+            return false;
+        }
+    };
+}
+
+namespace chronos{
     const uint8_t JAN = 1;
     const uint8_t FEV = 2;
     const uint8_t MAR = 3;
@@ -89,22 +89,22 @@ namespace scheduler{
             //lógica de verificação de 31 dias
             }else if(rtc.getMonth() == JAN || rtc.getMonth() == MAR || rtc.getMonth() == MAY || rtc.getMonth() == JUL || rtc.getMonth() == AUG || rtc.getMonth() == OCT || rtc.getMonth() == DEC){
                 if(day > 0 && day <=31){
-                rtc.setDay(day);
-                log::print("Day changed to: ", rtc.getDay(), log::LOG_LEVEL::WARNING);
-                return true;
+                    rtc.setDay(day);
+                    log::print("Day changed to: ", rtc.getDay(), log::LOG_LEVEL::WARNING);
+                    return true;
                 }else{
-                log::print("Day not changed! The day must be greater than zero and less than 31 for the months of January, March, May, July, August, October, and December. - INCORRECT DAY: ", day, log::LOG_LEVEL::ERROR);
-                return false;
+                    log::print("Day not changed! The day must be greater than zero and less than 31 for the months of January, March, May, July, August, October, and December. - INCORRECT DAY: ", day, log::LOG_LEVEL::ERROR);
+                    return false;
                 }
                 
             //lógica de verificação de 30 dias
             }else if(rtc.getMonth() == APR || rtc.getMonth() == JUN || rtc.getMonth() == SEP || rtc.getMonth() == NOV){
                 if(day > 0 && day <= 30){
-                rtc.setDay(day);
-                log::print("Day changed to: ", rtc.getDay(), log::LOG_LEVEL::WARNING);
-                return true;
+                    rtc.setDay(day);
+                    log::print("Day changed to: ", rtc.getDay(), log::LOG_LEVEL::WARNING);
+                    return true;
                 }else{
-                log::print("Day not changed! The day must be greater than zero and less than 31 for the months of April, June, September, and November. - INCORRECT DAY: ", day, log::LOG_LEVEL::ERROR);
+                    log::print("Day not changed! The day must be greater than zero and less than 31 for the months of April, June, September, and November. - INCORRECT DAY: ", day, log::LOG_LEVEL::ERROR);
                 return false;
                 }
                 
@@ -135,7 +135,7 @@ namespace scheduler{
 
                 }else{ //se não for ano bissexto
                     if(rtc.getDay() > 28){
-                            rtc.setDay(28);
+                        rtc.setDay(28);
                         log::print("Set month incongruence, fallbacking to day 28... - Month changed to: ", month, log::LOG_LEVEL::WARNING);
                     }else{
                         log::print("Month changed to: ", month, log::LOG_LEVEL::WARNING);
@@ -186,9 +186,9 @@ namespace scheduler{
 
         bool set_year(uint16_t year){
             if(year == 0){
-            log::print("God bless the America! Jesus, have mercy on us... ", "[...]", log::LOG_LEVEL::CRITICAL);
-            rtc.setYear(year);
-            return true;
+                log::print("God bless the America! Jesus, have mercy on us... ", "[...]", log::LOG_LEVEL::CRITICAL);
+                rtc.setYear(year);
+                return true;
             }
 
             // Se a data atual for 29 de fevereiro,
@@ -207,37 +207,37 @@ namespace scheduler{
         
         bool set_hour(uint8_t hour){
             if(hour >= 0 && hour <= 23){
-            log::print("Hour changed to: ", hour, log::LOG_LEVEL::WARNING);
-            rtc.setHours(hour);
-            return true;
+                log::print("Hour changed to: ", hour, log::LOG_LEVEL::WARNING);
+                rtc.setHours(hour);
+                return true;
             }else{
-            log::print("Set hour failed, fallbacking to hour 0... The hour must be between 0 and 23 - INCORRECT HOUR: ", hour, log::LOG_LEVEL::ERROR);
-            rtc.setHours(00);
-            return false;
+                log::print("Set hour failed, fallbacking to hour 0... The hour must be between 0 and 23 - INCORRECT HOUR: ", hour, log::LOG_LEVEL::ERROR);
+                rtc.setHours(00);
+                return false;
             }
         }
 
         bool set_minute(uint8_t minute){
             if(minute >= 0 && minute <= 59){
-            log::print("Minute changed to: ", minute, log::LOG_LEVEL::WARNING);
-            rtc.setMinutes(minute);
-            return true;
+                log::print("Minute changed to: ", minute, log::LOG_LEVEL::WARNING);
+                rtc.setMinutes(minute);
+                return true;
             }else{
-            log::print("Set minute failed, fallbacking to minute 00... The minute must be between 00 and 59 - INCORRECT MINUTE: ", minute, log::LOG_LEVEL::ERROR);
-            rtc.setMinutes(00);
-            return false;
+                log::print("Set minute failed, fallbacking to minute 00... The minute must be between 00 and 59 - INCORRECT MINUTE: ", minute, log::LOG_LEVEL::ERROR);
+                rtc.setMinutes(00);
+                return false;
             }
         }
 
         bool set_second(uint8_t second){
             if(second >= 0 && second <= 59){
-            log::print("Second changed to: ", second, log::LOG_LEVEL::WARNING);
-            rtc.setSeconds(second);
-            return true;
+                log::print("Second changed to: ", second, log::LOG_LEVEL::WARNING);
+                rtc.setSeconds(second);
+                return true;
             }else{
-            log::print("Set second failed, fallbacking to second 00... The second must be between 00 and 59 - INCORRECT SECOND: ", second, log::LOG_LEVEL::ERROR);
-            rtc.setSeconds(00);
-            return false;
+                log::print("Set second failed, fallbacking to second 00... The second must be between 00 and 59 - INCORRECT SECOND: ", second, log::LOG_LEVEL::ERROR);
+                rtc.setSeconds(00);
+                return false;
             }
         }
 
@@ -268,8 +268,8 @@ namespace scheduler{
 
         String get_compact_data(){
             char buffer[20];
-        snprintf(buffer, sizeof(buffer), "%04d%02d%02d_%02d%02d%02d", get_year(), get_month(), get_day(), get_hour(), get_minute(), get_second());
-        return String(buffer);
+            snprintf(buffer, sizeof(buffer), "%04d%02d%02d_%02d%02d%02d", get_year(), get_month(), get_day(), get_hour(), get_minute(), get_second());
+            return String(buffer);
         }
 
         bool sync_with_ntp_server(){
@@ -304,7 +304,9 @@ namespace shell{
         update_shell();
     }
   
-    
+    void command_parser(){
+        //TODO
+    }
 }
 
 namespace log{
@@ -317,7 +319,7 @@ namespace log{
         CRITICAL = 0
     };
   
-  LOG_LEVEL global_level = LOG_LEVEL::ERROR;
+    LOG_LEVEL global_level = LOG_LEVEL::ERROR;
   
     //implementação emergencial pra não bugar o print de log
     void print(String content, String result, LOG_LEVEL level);
@@ -352,51 +354,52 @@ namespace log{
   
     //print inteligente dos logs
     void print(String content, String result, LOG_LEVEL level){
-      String current_time = "FAZER TEMPO DEPOIS";
-      String log_prompt = "";
-      uint8_t log_num = 0;
-      switch(level){
+        String current_time = "FAZER TEMPO DEPOIS";
+        String log_prompt = "";
+        uint8_t log_num = 0;
+
+        switch(level){
         case LOG_LEVEL::DEBUG:
-          log_prompt = "DEBUG";
-          uint8_t log_num = 4;
+            log_prompt = "DEBUG";
+            log_num = 4;
         break;
         case LOG_LEVEL::INFO:
-          log_prompt = "INFO";
-          uint8_t log_num = 3;
+            log_prompt = "INFO";
+            log_num = 3;
         break;
         case LOG_LEVEL::WARNING:
-          log_prompt = "WARNING";
-          uint8_t log_num = 2;
+            log_prompt = "WARNING";
+            log_num = 2;
         break;
         case LOG_LEVEL::ERROR:
-          log_prompt = "ERROR";
-          uint8_t log_num = 1;
+            log_prompt = "ERROR";
+            log_num = 1;
         break;
         case LOG_LEVEL::CRITICAL:
-          log_prompt = "CRITICAL";
-          uint8_t log_num = 0;
+            log_prompt = "CRITICAL";
+            log_num = 0;
         break;
         default:
-          log_prompt = "LOG SYSTEM HAD A BAD ARGUMENT!!!";
-          uint8_t log_num = 0;
+            log_prompt = "LOG SYSTEM HAD A BAD ARGUMENT!!!";
+            log_num = 0;
         break;
-      }
-      
-      //verificação de nível de LOG global
-      if(log_num >= ){
-        //TODO
-      }
-      
-      Serial.print('[');
-      Serial.print(current_time);
-      Serial.print(']');
-      Serial.print(" ");
-      Serial.print('[');
-      Serial.print(log_prompt);
-      Serial.print('] ');
-      Serial.print(content);
-      Serial.print(" : ");
-      Serial.println(result);
+        }
+
+        //verificação de nível de LOG global
+        if(level > global_level){
+            return;
+        }
+
+        Serial.print('[');
+        Serial.print(current_time);
+        Serial.print(']');
+        Serial.print(" ");
+        Serial.print('[');
+        Serial.print(log_prompt);
+        Serial.print('] ');
+        Serial.print(content);
+        Serial.print(" : ");
+        Serial.println(result);
     }
 }
 

@@ -41,6 +41,10 @@ Microcontrolador STM32H747XIH6 tem internamente uma memória Flash QSPI externa 
 Read Only Trigger    | Em queda brusca de energia, trava a FLASH em modo ROM
 Protection Registers | Pinos físicos de protenção contra escrita
 
+### Tempo de vida com Wear Leveling estimado
+
+$$\text{Tempo de Vida 438,49 (anos)} = \frac{16.777.216 \times 100.000}{10.485.760 \times 365}$$
+
 # Arquitetura do banco de dados
 Banco de dados relacional embarcado em **SQLite 3**, otimizado para operar sobre o sistema de arquivos **LittleFS** e memória Flash QSPI
 
