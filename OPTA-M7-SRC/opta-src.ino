@@ -54,10 +54,9 @@ namespace chronos{
         STM32RTC& rtc = STM32RTC::getInstance();
     public:
         Date(uint8_t _hour, uint8_t _minute, uint8_t _second, uint8_t _day, uint8_t _month, uint16_t _year){
-        set_year(_year);
-        set_month(_month);
-        set_day(_day);
-
+            set_year(_year);
+            set_month(_month);
+            set_day(_day);
             set_hour(_hour);
             set_minute(_minute);
             set_second(_second);
